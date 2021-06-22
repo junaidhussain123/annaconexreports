@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report id="earnest_money_report_abc"
+                model="earnest.money.wizard"
+                string="Earnest Money Report"
+                report_type="xlsx"
+                name="report_earnest_money.detailed_xlsx_template"
+                file="Earnest Money Report"
+        />
+
+        <record id="earnest_money_wizard_view" model="ir.ui.view">
+            <field name="name">earnest_money_wizard_view</field>
+            <field name="model">earnest.money.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="by_date_making"/>
+                            <field name="by_tender_name"/>
+                            <field name="sale_order_num"/>
+                            <field name="by_closing_date"/>
+                            <field name="by_voucher_type"/>
+                        </group>
+                        <group>
+                            <field name="by_instrument_no"/>
+                            <field name="by_favour_of"/>
+                            <field name="by_cheque_no"/>
+                            <field name="by_bank"/>
+                            <field name="by_amount"/>
+                            <field name="by_pending_amount"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Earnest Money Report" name="generate_earnest_money_rep" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="earnest_money_wizard_action" model="ir.actions.act_window">
+            <field name="name">Earnest Money Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">earnest.money.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="earnest_money_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+        <!--         <menuitem id="point_of_sale.menu_point_rep" name="Sales Excel Report" -->
+        <!--                   action="detail_sale_wizard_action_mnp" sequence="1"/> -->
+        <!--         <menuitem id="menu_test" parent="point_of_sale.menu_point_rep" name="Test Module Parent"/> -->
+        <menuitem id="menu_earnest_money" parent="crm.crm_menu_report" name="Earnest Money Report" action="earnest_money_wizard_action"/>
+    </data>
+</odoo>

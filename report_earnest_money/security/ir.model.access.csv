@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_earnest_money_,access.report.earnest.money,model_earnest_money_wizard,base.group_user,1,1,1,1

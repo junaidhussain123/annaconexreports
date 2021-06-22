@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report id="tender_status_report"
+                model="tender.status.wizard"
+                string="Tender Status Report"
+                report_type="xlsx"
+                name="report_tender_status.detailed_xlsx_template"
+                file="Tender Status Report"
+        />
+
+        <record id="tender_status_wizard_view" model="ir.ui.view">
+            <field name="name">tender_status_wizard_view</field>
+            <field name="model">tender.status.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="by_tender_name"/>
+                            <field name="by_month"/>
+                            <field name="total_value"/>
+
+                        </group>
+                        <group>
+                            <field name="earnest_money"/>
+                            <field name="by_status"/>
+                            <field name="by_quotation"/>
+                            <field name="date_opening"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Tender Status Report" name="tender_status_report" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="tender_status_wizard_action" model="ir.actions.act_window">
+            <field name="name">Tender Status Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tender.status.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tender_status_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+        <!--         <menuitem id="point_of_sale.menu_point_rep" name="Sales Excel Report" -->
+        <!--                   action="detail_sale_wizard_action_mnp" sequence="1"/> -->
+        <!--         <menuitem id="menu_test" parent="point_of_sale.menu_point_rep" name="Test Module Parent"/> -->
+        <menuitem id="menu_tender_status" parent="crm.crm_menu_report" name="Tender Status Report" action="tender_status_wizard_action"/>
+    </data>
+</odoo>

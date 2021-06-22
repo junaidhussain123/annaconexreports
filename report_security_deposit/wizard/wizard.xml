@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report id="security_deposit_report"
+                model="security.deposit.wizard"
+                string="Security Deposit Report"
+                report_type="xlsx"
+                name="report_security_deposit.detailed_xlsx_template"
+                file="Security Deposit Report"
+        />
+
+        <record id="security_deposit_wizard_view" model="ir.ui.view">
+            <field name="name">Security_Deposit_Report</field>
+            <field name="model">security.deposit.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="by_date_of_making"/>
+                            <field name="by_tender_no"/>
+                            <field name="by_loi_no"/>
+                            <field name="By_closing_date"/>
+                            <field name="by_instrument_no"/>
+
+                        </group>
+                        <group>
+                            <field name="by_favour"/>
+                            <field name="by_cheque_no"/>
+                            <field name="by_bank"/>
+                            <field name="by_voucher_type"/>
+                            <field name="by_amount"/>
+                            <field name="by_pending_amount"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Security Deposit Report" name="security_deposit_report" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="security_deposit_wizard_action" model="ir.actions.act_window">
+            <field name="name">Security Deposit Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">security.deposit.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="security_deposit_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+        <!--         <menuitem id="point_of_sale.menu_point_rep" name="Sales Excel Report" -->
+        <!--                   action="detail_sale_wizard_action_mnp" sequence="1"/> -->
+        <!--         <menuitem id="menu_test" parent="point_of_sale.menu_point_rep" name="Test Module Parent"/> -->
+        <menuitem id="menu_security_status" parent="crm.crm_menu_report" name="Security Deposit Report" action="security_deposit_wizard_action"/>
+    </data>
+</odoo>
